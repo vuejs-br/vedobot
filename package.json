@@ -12,7 +12,7 @@
     "bot",
     "slack"
   ],
-  "author": "Halfeld",
+  "author": "Vue.js brasil",
   "license": "GPL-3.0",
   "dependencies": {
     "botkit": "^0.2.2"
