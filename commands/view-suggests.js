@@ -10,7 +10,7 @@ module.exports = controller => {
     // Get all results
     keys('suggest:*:theme')
       .then( themes => {
-        // bot.reply(message, JSON.stringify(themes))
+        if (themes.length == 0) return bot.reply(message, 'Nenhuma sugestão registrada!')
         themes.map( theme => {
 
           // Get all suggests
