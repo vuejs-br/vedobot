@@ -1,7 +1,7 @@
 
 module.exports = (register, title, author) => {
-  return `*Data*: ${register}
-*Titulo*: ${title}
-*Autor*: ${author}
------------------------------`
+  return `\n
+*${register}*
+\t*Titulo*: ${title}
+\t*Autor*: ${author}\n`
 }

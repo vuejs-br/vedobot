@@ -1,22 +1,33 @@
 
-
-const fs = require('fs')
+const util = require('./utils')
 const view = require('./messages/view')
+const hget = require('./models/hget')
+const keys = require('./models/keys')
+const hgetall = require('./models/hgetall')
 
 module.exports = controller => {
-  controller.hears(['^ver*','^view*','^view*'], 'direct_message,direct_mention,mention', (bot, message) => {
-    fs.readFile('./list.json', 'utf8', (err, list) => {
-      if (err) {
-        bot.reply(message, `Deu ruim xD olha o erro: ${JSON.stringify(err)}`)
-        return
-      }
+  controller.hears(['^ver-posts*','^view-posts*'], 'direct_message,direct_mention,mention', (bot, message) => {
 
-      list = JSON.parse(list)
-      list.forEach(register => {
-        for (let key in register) {
-          bot.reply(message, view(Object.keys(register), register[key].title, register[key].author))
-        }
+    // Get all results
+    keys('*')
+      .then( data => {
+        data.map( hash => {
+
+          // Get all fields for these keys
+          hgetall(hash)
+            .then( data => {
+              for (let key in data) {
+                bot.reply(message, view(hash.split(':')[1].replace(/-/g, '/'), data[key], key))
+              }
+            })
+            .catch( err => {
+              bot.reply(message, `Deu ruim xD dá um confere no erro: ${JSON.stringify(err)}`)
+            })
+        })
       })
-    })
+      .catch( err => {
+        bot.reply(message, `Deu ruim xD dá um confere no erro: ${JSON.stringify(err)}`)
+      })
+
   })
 }
