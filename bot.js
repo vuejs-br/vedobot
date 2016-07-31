@@ -3,8 +3,7 @@ const Botkit = require('botkit')
 const commands = require('./commands')
 
 const controller = Botkit.slackbot({
-  // debug: process.env.NODE_ENV ? true : false
-  debug: false
+  debug: process.env.NODE_ENV ? true : false
 })
 
 const bot = controller.spawn({
