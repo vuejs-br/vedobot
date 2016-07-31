@@ -5,7 +5,7 @@ const keys = require('./models/keys')
 const get = require('./models/get')
 
 module.exports = controller => {
-  controller.hears(['^ver-sugeridos*','^view-suggests*'], 'direct_message,direct_mention,mention', (bot, message) => {
+  controller.hears(['^posts-sugeridos*','^posts-suggests*'], 'direct_message,direct_mention,mention', (bot, message) => {
 
     // Get all results
     keys('suggest:*:theme')

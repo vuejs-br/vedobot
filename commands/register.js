@@ -4,7 +4,7 @@ const register = require('./messages/register')
 const hset = require('./models/hset')
 
 module.exports = controller => {
-  controller.hears(['^registrar*','^register*','^regitra*'], 'direct_message,direct_mention,mention', (bot, message) => {
+  controller.hears(['^registrar-post*','^register-post*','^regitra-post*'], 'direct_message,direct_mention,mention', (bot, message) => {
     let { text } = message
 
     // Test channel
