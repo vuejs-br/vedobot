@@ -23,7 +23,7 @@ module.exports = controller => {
           })
 
       } else {
-        bot.reply(message, 'Syntax errada! Dá um confere aí *`<dd-mm-yyyy:titulo:autor>`*')
+        bot.reply(message, 'Syntax errada! Dá um confere aí *`<dd-mm-yyyy:meu-titulo:username-autor>`*')
       }
     } else {
       bot.reply(message, 'Você precisa ser um autor!\nQuer escrever para o blog? fale com *@vedovelli*')

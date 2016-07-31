@@ -1,40 +1,38 @@
 
-// const help = require('./messages/help')
-const fs = require('fs')
+const util = require('./utils')
+const hget = require('./models/hget')
+const hdel = require('./models/hdel')
 
 module.exports = controller => {
-  controller.hears(['^remover*','^delete*'], 'direct_message,direct_mention,mention', (bot, message) => {
+  controller.hears(['^remover-post*','^remove-post*'], 'direct_message,direct_mention,mention', (bot, message) => {
     let { text } = message
 
-    // Test if syntax is true
-    if (/^\d{4}-\d{2}-\d{2}:\w+-?\w+$/.test(text.split(' ')[1])) {
-      text = text.split(' ')[1].split(':')
+    // Test channel
+    if (message.channel == 'G1WJJJ48N') {
 
-      // Read file
-      fs.readFile('./list.json', 'utf8', (err, list) => {
-        if (err) {
-          bot.reply(message, `Deu ruim xD olha o erro: ${JSON.stringify(err)}`)
-          return
-        }
+      // Test if syntax is true
+      if (util.checkSyntax(text.split(' ')[1], 'remove')) {
+        text = text.split(' ')[1].split(':')
 
-        list = JSON.parse(list)
-        list.indexOf(text)
-        console.log(text)
-        console.log(list.indexOf(text[0]))
-        // bot.reply(message, JSON.stringify(list.indexOf(text[0])))
+        hget(`register:${text[0]}:date`, text[1])
+          .then( hash => {
+            hdel(`register:${text[0]}:date`, text[1])
+              .then( res => {
+                bot.reply(message, `Post do *${util.replace(text[1])}* do dia *${text[0].replace(/-/g, '/')}* removido!`)
+              })
+              .catch( err => {
+                bot.reply(message, `Deu ruim xD dá um confere no erro: ${JSON.stringify(err)}`)
+              })
+          })
+          .catch( err => {
+            bot.reply(message, `Deu ruim xD dá um confere no erro: ${JSON.stringify(err)}`)
+          })
 
-        // After add new post, write again
-        // fs.writeFile('./list.json', JSON.stringify(list, null, 2), err => {
-        //   if (err) {
-        //     bot.reply(message, `Deu ruim xD olha o erro: ${JSON.stringify(err)}`)
-        //     return
-        //   }
-        //
-        //   bot.reply(message, register(json[text[0]].title, json[text[0]].author))
-        // })
-      })
+      } else {
+        bot.reply(message, 'Syntax errada! Dá um confere aí *`<dd-mm-yyyy:username-autor>`*')
+      }
     } else {
-      bot.reply(message, 'Syntax errada! Dá um confere aí *`<yyyy-mm-dd:titulo:autor>`*')
+      bot.reply(message, 'Você precisa ser um autor!\nQuer escrever para o blog? fale com *@vedovelli*')
     }
 
   })
