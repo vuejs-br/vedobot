@@ -6,7 +6,7 @@ const keys = require('./models/keys')
 const hgetall = require('./models/hgetall')
 
 module.exports = controller => {
-  controller.hears(['^ver-posts*','^view-posts*'], 'direct_message,direct_mention,mention', (bot, message) => {
+  controller.hears(['^ver-posts*','^see-posts*'], 'direct_message,direct_mention,mention', (bot, message) => {
 
     // Get all results
     keys('register:*')

@@ -10,7 +10,7 @@ module.exports = controller => {
     let { text } = message
 
     // Test channel
-    if (message.channel == 'G1WJJJ48N') {
+    if (message.channel == 'G1LTWEVMW') {
 
       // Test if syntax is true
       if (/:+/.test(text) && !util.checkSyntax(text.split(/\s:/)[1], 'suggest')) {
