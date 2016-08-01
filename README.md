@@ -1,4 +1,4 @@
 Vedobot
 =======
 
-> A Slack bot to organize the community Vue.js Brazil
+> Um Slack bot para organizar a comunidade Vue.js Brazil.
