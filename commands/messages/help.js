@@ -12,6 +12,7 @@ Aqui esta o que eu posso fazer!
 \t\t2 - *\`posts-sugeridos\`* - Visualiza a listagem de temas sugeridos para posts.
 \t\t3 - *\`sugerir-post :meu-titulo\`* - Sugere um tema para um post.
 \t\t4 - *\`remover-sugestão :meu-titulo\`* - Remove uma sugestão de tema para post.
+\t\t5 - *\`votar :meu-titulo\`* - Vota em uma sugestão de tema para post.
 
 Ainda estou em beta, mas qualquer bug ou sugestão,
 crie uma issue no meu repositório: https://github.com/vuejs-br/vedobot`

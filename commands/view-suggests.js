@@ -1,8 +1,8 @@
 
 const util = require('./utils')
-const view = require('./messages/view')
+const viewSuggest = require('./messages/view-suggest')
 const keys = require('./models/keys')
-const get = require('./models/get')
+const hgetall = require('./models/hgetall')
 
 module.exports = controller => {
   controller.hears(['^posts-sugeridos*','^posts-suggests*'], 'direct_message,direct_mention,mention', (bot, message) => {
@@ -14,13 +14,12 @@ module.exports = controller => {
         themes.map( theme => {
 
           // Get all suggests
-          get(theme)
+          hgetall(theme)
             .then( status => {
               theme = util.replace(theme.split(':')[1])
-              if (status == 'produção') {
-                bot.reply(message, `:zap: ${theme} - *${status}*`)
-              } else {
-                bot.reply(message, `:zap: ${theme} - _${status}_`)
+
+              for (let key in status) {
+                bot.reply(message, viewSuggest(theme, key, status[key]))
               }
             })
             .catch( err => {

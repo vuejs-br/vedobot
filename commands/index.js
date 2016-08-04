@@ -3,6 +3,7 @@ const help = require('./help')
 const register = require('./register')
 const view = require('./view')
 const remove = require('./remove')
+const vote = require('./vote')
 const suggestPost = require('./suggest-post')
 const viewSuggests = require('./view-suggests')
 const acceptSuggest = require('./accept-suggest')
@@ -17,4 +18,5 @@ module.exports = controller => {
   viewSuggests(controller)
   acceptSuggest(controller)
   removeSuggest(controller)
+  vote(controller)
 }

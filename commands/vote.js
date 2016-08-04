@@ -1,19 +1,20 @@
 
 const util = require('./utils')
-const suggest = require('./messages/suggest')
-const hset = require('./models/hset')
+const view = require('./messages/view')
+const hincrby = require('./models/hincrby')
 
 module.exports = controller => {
-  controller.hears(['^sugerir-post*','^sugerir-posts*','^suggest-post*'], 'direct_message,direct_mention,mention', (bot, message) => {
-    let { text } = message
+  controller.hears(['^votar*','^vote*'], 'direct_message,direct_mention,mention', (bot, message) => {
+
+    let {text} = message
 
     // Test if syntax is true
     if (/:+/.test(text) && !util.checkSyntax(text.split(/\s:/)[1], 'suggest')) {
       text = text.split(/\s:/)[1]
 
-      hset(`suggest:${text}:theme`, 'em análise', '0')
-        .then( data => {
-          bot.reply(message, suggest(util.replace(text)))
+      hincrby(`suggest:${text}:theme`, 'em análise', '1')
+        .then( res => {
+          bot.reply(message, `Voto para *${text}* confirmado!`)
         })
         .catch( err => {
           bot.reply(message, `Deu ruim xD dá um confere no erro: ${JSON.stringify(err)}`)
@@ -21,7 +22,5 @@ module.exports = controller => {
     } else {
       bot.reply(message, 'Syntax errada! Dá um confere aí *`<:meu-titulo>`*')
     }
-
-
   })
 }
