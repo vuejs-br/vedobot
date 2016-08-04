@@ -8,6 +8,7 @@ const suggestPost = require('./suggest-post')
 const viewSuggests = require('./view-suggests')
 const acceptSuggest = require('./accept-suggest')
 const removeSuggest = require('./remove-suggest')
+const huebr = require('./huebr')
 
 module.exports = controller => {
   help(controller)
@@ -19,4 +20,5 @@ module.exports = controller => {
   acceptSuggest(controller)
   removeSuggest(controller)
   vote(controller)
+  huebr(controller)
 }
