@@ -1,5 +1,6 @@
 
-module.exports = `Aqui esta o que eu posso fazer!
+module.exports = `*EU SOU A VERSÃO DE DESENVOLVIMENTO DO VEDOBOT*
+Aqui esta o que eu posso fazer!
 
 *Restrito para autores:*
 \t\t1 - *\`registrar-post dd-mm-yyyy:meu-titulo:username-autor\`* - Registra uma data para postagem.
