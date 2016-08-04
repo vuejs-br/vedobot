@@ -7,8 +7,8 @@ module.exports = controller => {
   controller.hears(['^registrar-post*','^register-post*','^regitra-post*'], 'direct_message,direct_mention,mention', (bot, message) => {
     let { text } = message
 
-    // Test channel
-    if (message.channel == 'G1LTWEVMW') {
+    // Test channel, blog or vedobot-test
+    if (message.channel == 'G1WJJJ48N' || message.channel == 'G1LTWEVMW') {
 
       // Test if syntax is true
       if (util.checkSyntax(text.split(' ')[1])) {

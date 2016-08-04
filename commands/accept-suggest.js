@@ -3,14 +3,14 @@ const util = require('./utils')
 const register = require('./messages/register')
 const keys = require('./models/keys')
 const del = require('./models/del')
-const set = require('./models/set')
+const hset = require('./models/hset')
 
 module.exports = controller => {
   controller.hears(['^aceitar-sugestão*','^accept-suggest*','^aceitar-sugestao*'], 'direct_message,direct_mention,mention', (bot, message) => {
     let { text } = message
 
-    // Test channel
-    if (message.channel == 'G1LTWEVMW') {
+    // Test channel, blog or vedobot-test
+    if (message.channel == 'G1WJJJ48N' || message.channel == 'G1LTWEVMW') {
 
       // Test if syntax is true
       if (/:+/.test(text) && !util.checkSyntax(text.split(/\s:/)[1], 'suggest')) {
@@ -24,7 +24,7 @@ module.exports = controller => {
               .then( res => {
 
                 // Set again
-                set(`suggest:${text[1]}:theme`, 'produção')
+                hset(`suggest:${text[1]}:theme`, 'produção', '∞')
                   .then( suggest => {
                     bot.reply(message, `*${util.replace(text[1])}* alterado!`)
                   })
