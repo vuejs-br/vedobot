@@ -35,15 +35,10 @@ module.exports = controller => {
       // Hehe
       if (/.*(hehe|kkk|haha|hihi).*/i.test(text)) return bot.reply(message, 'Hahahahaha, esse cara é mó engraçado! deve ser programador Java.')
 
-      // Hehe
-      if (/.*(hehe|kkk|haha|hihi).*/i.test(text)) return bot.reply(message, 'Hahahahaha, esse cara é mó engraçado! deve ser programador Java.')
-
       // Jaba
       if (/.*(livro)+.*(vue)+/i.test(text)) return bot.reply(message, 'Um livro sobre Vue loko que tem o selo bot de aprovação é esse aqui: https://leanpub.com/livro-vue')
 
-
   });
-
 
   controller.hears(['keyword','^pattern$'],['message_received'],function(bot,message) {
 
@@ -51,6 +46,5 @@ module.exports = controller => {
     bot.reply(message,'You used a keyword!')
 
   })
-
 
 }
