@@ -23,6 +23,9 @@ module.exports = controller => {
       // Angular
       if (/.*(angular).*/.test(text)) return bot.reply(message, 'Angular serio? hahahha')
 
+      // Angular
+      if (/.*(vedobot).*/.test(text)) return bot.reply(message, 'Fuck yeah!!!')
+
       // React
       if (/.*(react).*/.test(text)) return bot.reply(message, 'Já disse que eu adoro o JSX, syntax linda!')
 
