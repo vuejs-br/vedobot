@@ -1,22 +1,20 @@
 
 const util = require('./utils')
-const view = require('./messages/view')
 const hincrby = require('./models/hincrby')
 
 module.exports = controller => {
-  controller.hears(['^votar*','^vote*'], 'direct_message,direct_mention,mention', (bot, message) => {
-
+  controller.hears(['^votar*', '^vote*'], 'direct_message,direct_mention,mention', (bot, message) => {
     let {text} = message
 
     // Test if syntax is true
-    if (/:+/.test(text) && !util.checkSyntax(text.split(/\s:/)[1], 'suggest')) {
+    if (/:+[^\s]/.test(text) && !util.checkSyntax(text.split(/\s:/)[1], 'suggest')) {
       text = text.split(/\s:/)[1]
 
       hincrby(`suggest:${text}:theme`, 'em análise', '1')
-        .then( res => {
+        .then(res => {
           bot.reply(message, `Voto para *${text}* confirmado!`)
         })
-        .catch( err => {
+        .catch(err => {
           bot.reply(message, `Deu ruim xD dá um confere no erro: ${JSON.stringify(err)}`)
         })
     } else {
