@@ -12,7 +12,7 @@ Para contribuir você vai criar um bot de testes [aqui](https://vuejs-brasil.sla
 Rodando localmente
 ------------------
 
-Para você conseguir trabalhar no bot você irá precisa do [Nodejs](http://nodejs.org/) instalado e do [RedisDB](http://redis.io/)
+Para você conseguir trabalhar no bot você irá precisa do [Nodejs](http://nodejs.org/)(>= v6.0.0) instalado e do [RedisDB](http://redis.io/)
 
 depois é só instalar as dependências
 

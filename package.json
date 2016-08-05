@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node bot.js",
-    "dev": "nodemon bot.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "NODE_ENV=development ./node_modules/.bin/nodemon bot.js"
   },
   "keywords": [
     "bot",
@@ -17,5 +16,8 @@
   "dependencies": {
     "botkit": "^0.2.2",
     "redis": "^2.6.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.10.0"
   }
 }
