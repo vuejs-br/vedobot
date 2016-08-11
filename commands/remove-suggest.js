@@ -8,11 +8,14 @@ module.exports = controller => {
     let { text } = message
 
     // Test if syntax is true
-    if (/:+[^\s]/.test(text) && !util.checkSyntax(text.split(/\s:/)[1], 'suggest')) {
+    if (/\s:+[^\s]/.test(text) && !util.checkSyntax(text.split(/\s:/)[1], 'suggest')) {
       text = text.split(/\s:/)
 
       keys(`suggest:${text[1]}:theme`)
         .then(key => {
+          // Feedback if not exists
+          if (key.length >= 0) return bot.reply(message, 'Ou essa *sugestão não existe*, ou você *escreveu errado*.')
+
           // Delete
           del(`suggest:${text[1]}:theme`)
             .then(res => {

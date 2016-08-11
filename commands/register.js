@@ -2,6 +2,7 @@
 const util = require('./utils')
 const register = require('./messages/register')
 const hset = require('./models/hset')
+const hexists = require('./models/hexists')
 
 module.exports = controller => {
   controller.hears(['^registrar-post*', '^register-post*', '^regitra-post*'], 'direct_message,direct_mention,mention', (bot, message) => {
@@ -12,9 +13,17 @@ module.exports = controller => {
       if (util.checkSyntax(text.split(' ')[1])) {
         text = text.split(' ')[1].split(':')
 
-        hset(`register:${text[0]}:date`, util.replace(text[2]), util.replace(text[1]))
-          .then(data => {
-            bot.reply(message, register(util.replace(text[1]), util.replace(text[2])))
+        hexists(`register:${text[0]}:date`, util.replace(text[2]))
+          .then(result => {
+            if (result === 1) return bot.reply(message, `O post *${util.replace(text[1])}* já tá registrado\nou você já *tem um post agendado para o dia*!`)
+
+            hset(`register:${text[0]}:date`, util.replace(text[2]), util.replace(text[1]))
+              .then(data => {
+                bot.reply(message, register(util.replace(text[1]), util.replace(text[2])))
+              })
+              .catch(err => {
+                bot.reply(message, `Deu ruim xD dá um confere no erro: ${JSON.stringify(err)}`)
+              })
           })
           .catch(err => {
             bot.reply(message, `Deu ruim xD dá um confere no erro: ${JSON.stringify(err)}`)

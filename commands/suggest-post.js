@@ -8,7 +8,7 @@ module.exports = controller => {
     let { text } = message
 
     // Test if syntax is true
-    if (/:+[^\s]/.test(text) && !util.checkSyntax(text.split(/\s:/)[1], 'suggest')) {
+    if (/\s:+[^\s]/.test(text) && !util.checkSyntax(text.split(/\s:/)[1], 'suggest')) {
       text = text.split(/\s:/)[1]
 
       hset(`suggest:${text}:theme`, 'em análise', '0')

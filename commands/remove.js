@@ -15,6 +15,9 @@ module.exports = controller => {
 
         hget(`register:${text[0]}:date`, text[1])
           .then(hash => {
+            // Feedback if not exists
+            if (hash === null) return bot.reply(message, 'Ou esse *post não existe*, ou você *escreveu errado*.')
+
             hdel(`register:${text[0]}:date`, text[1])
               .then(res => {
                 bot.reply(message, `Post do *${util.replace(text[1])}* do dia *${text[0].replace(/-/g, '/')}* removido!`)
