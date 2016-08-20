@@ -8,6 +8,7 @@ const suggestPost = require('./suggest-post')
 const viewSuggests = require('./view-suggests')
 const acceptSuggest = require('./accept-suggest')
 const removeSuggest = require('./remove-suggest')
+const update = require('./update')
 const huebr = require('./huebr')
 
 // Start commands
@@ -23,5 +24,6 @@ module.exports = controller => {
   acceptSuggest(controller)
   removeSuggest(controller)
   vote(controller)
+  update(controller)
   huebr(controller)
 }

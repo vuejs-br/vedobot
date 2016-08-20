@@ -5,6 +5,7 @@ module.exports = `Aqui esta o que eu posso fazer!
 \t\t1 - *\`registrar-post dd-mm-yyyy:meu-titulo:username-autor\`* - Registra uma data para postagem.
 \t\t2 - *\`remover-post dd-mm-yyyy:username-autor\`* - Apaga uma data para postagem.
 \t\t3 - *\`aceitar-sugestão :meu-titulo\`* - Colocar sugestão em produção.
+\t\t4 - *\`upgrade\`* - Atualiza a versão do bot.
 
 *Qualquer pessoa:*
 \t\t1 - *\`ver-posts\`* - Visualiza a listagem de próximas postagens.
