@@ -3,14 +3,21 @@ const view = require('./messages/view')
 const keys = require('./models/keys')
 const hgetall = require('./models/hgetall')
 
+// Start command
+// ==============
+// controller {Object}
 module.exports = controller => {
   controller.hears(['^ver-posts*', '^see-posts*'], 'direct_message,direct_mention,mention', (bot, message) => {
+
     // Get all results
+    // ===============
     keys('register:*')
       .then(data => {
         if (data.length === 0) return bot.reply(message, 'Nenhum post agendado!')
         data.map(hash => {
+
           // Get all fields for these keys
+          // =============================
           hgetall(hash)
             .then(data => {
               for (let key in data) {
@@ -18,12 +25,12 @@ module.exports = controller => {
               }
             })
             .catch(err => {
-              bot.reply(message, `Deu ruim xD dá um confere no erro: ${JSON.stringify(err)}`)
+              bot.reply(message, util.errorHandler(err))
             })
         })
       })
       .catch(err => {
-        bot.reply(message, `Deu ruim xD dá um confere no erro: ${JSON.stringify(err)}`)
+        bot.reply(message, util.errorHandler(err))
       })
   })
 }

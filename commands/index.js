@@ -10,6 +10,9 @@ const acceptSuggest = require('./accept-suggest')
 const removeSuggest = require('./remove-suggest')
 const huebr = require('./huebr')
 
+// Start commands
+// ==============
+// controller {Object}
 module.exports = controller => {
   help(controller)
   register(controller)

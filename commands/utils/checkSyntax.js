@@ -1,4 +1,7 @@
 
+// Check syntax
+// ============
+// value, pattern {String}
 module.exports = (value, pattern) => {
   switch (pattern) {
     case 'remove':

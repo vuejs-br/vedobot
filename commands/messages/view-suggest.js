@@ -1,4 +1,7 @@
 
+// Return message
+// ==============
+// title, status, vote {String}
 module.exports = (title, status, vote) => {
   if (status === 'produção') {
     return `:zap: *${title}* - *${status}* - :+1: *${vote}*`

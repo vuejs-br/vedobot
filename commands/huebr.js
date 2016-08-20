@@ -1,11 +1,17 @@
 
+// Start command
+// ==============
+// controller {Object}
 module.exports = controller => {
+  
   // Show message on joined
+  // ======================
   controller.on('channel_joined', (bot, message) => {
     bot.reply(message, 'Bem Vindo! Aqui quem manda é eu porquê meu poder é mais de 8000 :P')
   })
 
   // Quention about angular
+  // ======================
   controller.hears('.*(angular).*', 'direct_message,direct_mention,mention', (bot, message) => {
     const answers = [
       'Angular? Você sabe que meu poder é mais de 8000 neh?',
@@ -17,6 +23,7 @@ module.exports = controller => {
   controller.on('ambient', (bot, message) => {
     // if added more automatic messages,
     // must be follow this standard
+    // ================================
 
     const {text} = message
 
